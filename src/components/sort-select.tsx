@@ -1,8 +1,6 @@
 "use client";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { sortOptions, sortParser } from "@/features/tickets/search-params";
-import { useQueryStates } from "nuqs";
 
 export type SortSelectOption = {
     sortKey: string;

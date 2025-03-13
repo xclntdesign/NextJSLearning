@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { ticketPath, ticketsPath, signInPath } from "@/paths";
+import { ticketPath, ticketsPath } from "@/paths";
 import { z } from "zod";
 import { ActionState, fromErrorToActionState, toActionState } from "@/components/form/utils/to-action-state";
 import { setCookieByKey } from "@/actions/cookies";

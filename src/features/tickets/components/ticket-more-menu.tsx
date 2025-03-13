@@ -7,7 +7,6 @@ import { TICKET_STATUS_LABELS } from "../constants";
 import { updateTicketStatus } from "../actions/update-ticket-status";
 import { toast } from "sonner";
 import { useConfirmDialog } from "@/components/confirm-dialog";
-import { Button } from "@/components/ui/button";
 import { deleteTicket } from "../actions/delete-ticket";
 
 type TicketMoreMenuProps = {

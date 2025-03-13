@@ -13,8 +13,6 @@ import { TicketWithMetadata } from "../types";
 import { getAuth } from "@/features/auth/queries/get-auth";
 import { isOwner } from "@/features/auth/utils/is-owner";
 import { Comments } from "@/features/comment/components/comments";
-import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { CommentWithMetadata } from "@/features/comment/types";
 
 type TicketItemProps = {
@@ -33,16 +31,6 @@ const TicketItem = async ({ ticket, isDetail, comments }: TicketItemProps) => {
                 <LucideArrowUpRightFromSquare className="h-4 w-4" />
             </Link>
         </Button>
-    );
-
-    const handleDeleteTicket = async () => {
-        await deleteTicket(ticket.id);
-    };
-
-    const deleteButton = (
-        <ConfirmDialog title="Delete Ticket" description="Are you sure you want to delete this ticket?" action={deleteTicket.bind(null, ticket.id)} trigger={<Button variant="outline" size="icon">
-            <LucideTrash className="h-4 w-4" />
-        </Button>} />
     );
 
     const editButton = isTicketOwner ? (

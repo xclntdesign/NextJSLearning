@@ -1,4 +1,3 @@
-import { getComments } from "../queries/get-comments";
 import { CommentItem } from "./comment-item";
 import { CardCompact } from "@/components/card-compact";
 import { CommentCreateForm } from "./comment-create-form";

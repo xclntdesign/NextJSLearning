@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { homePath, ticketsPath, signUpPath, signInPath } from "@/paths";
-import { LucideKanban, LucideLogOut } from "lucide-react";
+import { homePath, signUpPath, signInPath } from "@/paths";
+import { LucideKanban } from "lucide-react";
 import { buttonVariants } from "./ui/button";
 import { ThemeSwitcher } from "./theme/theme-switcher";
-import { signOut } from "@/features/auth/actions/sign-out";
-import { SubmitButton } from "./form/submit-button";
 import { useAuth } from "@/features/auth/hooks/use-auth";
 import { AccountDropdown } from "./account-dropdown";
 

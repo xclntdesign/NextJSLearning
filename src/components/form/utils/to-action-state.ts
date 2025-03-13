@@ -1,6 +1,6 @@
 import { ZodError } from "zod";
 
-export type ActionState<T = any>  = {
+export type ActionState  = {
     status?: "SUCCESS" | "ERROR",
     message: string,
     payload?: FormData,
