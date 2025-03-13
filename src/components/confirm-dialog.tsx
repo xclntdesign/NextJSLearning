@@ -1,45 +1,15 @@
 "use client";
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import { useState, cloneElement, useActionState } from "react";
 import { Form } from "./form/form";
 import { SubmitButton } from "./form/submit-button";
 import { ActionState, EMPTY_ACTION_STATE } from "./form/utils/to-action-state";
 
-type ConfirmDialogProps = {
-    title?: string;
-    description?: string;
-    action: () => Promise<ActionState>;
-    trigger: React.ReactElement;
-};
-
-const ConfirmDialog = ({ title, description, action, trigger }: ConfirmDialogProps) => {
-    return (
-        <AlertDialog>
-            <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-            <AlertDialogContent>
-                <AlertDialogHeader>
-                    <AlertDialogTitle>{title}</AlertDialogTitle>
-                    <AlertDialogDescription>{description}</AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction asChild>
-                        <form action={action}>
-                            <Button type="submit">Confirm</Button>
-                        </form>
-                    </AlertDialogAction>
-                </AlertDialogFooter>
-            </AlertDialogContent>
-        </AlertDialog>
-    );
-};
-
 type useFormDialogArgs = {
     title?: string;
     description?: string;
-    action: (payload: FormData) => void;
+    action: () => Promise<ActionState>;
     trigger: React.ReactElement;
 };
 
@@ -78,5 +48,4 @@ const useConfirmDialog = ({ title = "Are you absolutely sure?", description = "T
     return [dialogTrigger, dialog] as const;
 };
 
-export { ConfirmDialog };
 export { useConfirmDialog };
