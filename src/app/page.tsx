@@ -2,7 +2,8 @@ import { Heading } from "@/components/heading";
 import { Suspense } from "react";
 import { Spinner } from "@/components/spinner";
 import { TicketList } from "@/features/tickets/components/ticket-list";
-import { SearchParams } from "@/features/tickets/search-params";
+import { SearchParams } from "nuqs/server";
+import { searchParamsCache } from "@/features/tickets/search-params";
 
 type HomePageProps = {
   searchParams: Promise<SearchParams>;
@@ -14,7 +15,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
       <Heading title="All Tickets" description="Tickets by everyone in one place." />
       <div className="flex-1 flex flex-col items-center">
         <Suspense fallback={<Spinner />}>
-          <TicketList searchParams={await searchParams} />
+          <TicketList searchParams={searchParamsCache.parse(await searchParams)} />
         </Suspense>
       </div>
     </div>

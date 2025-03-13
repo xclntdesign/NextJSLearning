@@ -7,7 +7,8 @@ import { Placeholder } from "@/components/placeholder";
 import { CardCompact } from "@/components/card-compact";
 import { TicketUpsertForm } from "@/features/tickets/components/ticket-upsert-form";
 import { getAuth } from "@/features/auth/queries/get-auth";
-import { SearchParams } from "@/features/tickets/search-params";
+import { SearchParams } from "nuqs/server";
+import { searchParamsCache } from "@/features/tickets/search-params";
 
 type TicketsPageProps = {
     searchParams: Promise<SearchParams>;
@@ -25,7 +26,7 @@ const TicketsPage = async ({ searchParams }: TicketsPageProps) => {
                 
                 <ErrorBoundary fallback={<Placeholder label="Something went wrong!" />}>
                     <Suspense fallback={<Spinner />}>
-                        <TicketList userId={user?.id} searchParams={await searchParams}/>
+                        <TicketList userId={user?.id} searchParams={searchParamsCache.parse(await searchParams)}/>
                     </Suspense>
                 </ErrorBoundary>
             </div>
