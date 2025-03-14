@@ -6,21 +6,24 @@ import { Form } from "./form/form";
 import { SubmitButton } from "./form/submit-button";
 import { ActionState, EMPTY_ACTION_STATE } from "./form/utils/to-action-state";
 
-type useFormDialogArgs = {
+type useConfirmDialogArgs = {
     title?: string;
     description?: string;
     action: () => Promise<ActionState>;
-    trigger: React.ReactElement;
+    trigger: React.ReactElement | ((isLoading: boolean) => React.ReactElement);
 };
 
-const useConfirmDialog = ({ title = "Are you absolutely sure?", description = "This action cannot be undone. Make sure you understand the consequences.", action, trigger }: useFormDialogArgs) => {
+const useConfirmDialog = ({ title = "Are you absolutely sure?", description = "This action cannot be undone. Make sure you understand the consequences.", action, trigger }: useConfirmDialogArgs) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const dialogTrigger = cloneElement(trigger, {
-        onClick: () => setIsOpen((state) => !state)
-    });
+    const [actionState, formAction, isPending] = useActionState(action, EMPTY_ACTION_STATE);
 
-    const [actionState, formAction] = useActionState(action, EMPTY_ACTION_STATE);
+    const dialogTrigger = cloneElement(
+        typeof trigger === "function" ? trigger(isPending) : trigger,
+        {
+            onClick: () => setIsOpen((state) => !state),
+        }
+    );
 
     const handleSuccess = () => {
         setIsOpen(false);
