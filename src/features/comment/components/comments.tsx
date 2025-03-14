@@ -40,8 +40,6 @@ const Comments = ({ ticketId, paginatedComments }: CommentsProps) => {
 
     const comments = data.pages.flatMap((page) => page.list);
 
-    const handleMore = () => fetchNextPage();
-
     const queryClient = useQueryClient();
 
     const handleCreateComment = () => queryClient.invalidateQueries({ queryKey });

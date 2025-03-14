@@ -1,4 +1,3 @@
-import { UnknownTypedSql } from "@prisma/client/runtime/library";
 import { ZodError } from "zod";
 
 export type ActionState <T = any> = {

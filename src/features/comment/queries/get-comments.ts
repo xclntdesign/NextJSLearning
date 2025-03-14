@@ -37,6 +37,7 @@ export const getComments = async (ticketId: string, cursor?: string) => {
 
     const hasNextPage = comments.length > take;
     comments = hasNextPage ? comments.slice(0, -1) : comments;
+    count = count;
 
     return {
         list: comments.map((comment) => ({

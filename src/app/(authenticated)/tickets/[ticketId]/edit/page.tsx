@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import { CardCompact } from "@/components/card-compact";
 import { TicketUpsertForm } from "@/features/tickets/components/ticket-upsert-form";
 import { getTicket } from "@/features/tickets/queries/get-ticket";
-import { getAuth } from "@/features/auth/queries/get-auth";
-import { isOwner } from "@/features/auth/utils/is-owner";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { homePath, ticketPath } from "@/paths";

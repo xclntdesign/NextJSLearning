@@ -1,7 +1,6 @@
 "use client";
 
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
 
 type ReactQueryProviderProps = {
     children: React.ReactNode;
