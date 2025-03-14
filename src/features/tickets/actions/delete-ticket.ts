@@ -10,6 +10,8 @@ import { getAuthOrRedirect } from "@/features/auth/queries/get-auth-or-redirect"
 import { isOwner } from "@/features/auth/utils/is-owner";
 
 export const deleteTicket = async (id: string) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     const { user } = await getAuthOrRedirect();
     
     try {
