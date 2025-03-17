@@ -20,6 +20,7 @@ model User {
   email         String    @unique
   passwordHash  String
   sessions      Session[]
+  passwordResetTokens   PasswordResetToken[]
   tickets       Ticket[]
   comments      Comment[]
 }
@@ -38,6 +39,13 @@ model Ticket {
   comments    Comment[]
 
   @@index([userId])
+}
+
+model PasswordResetToken {
+    tokenHash       String      @id
+    expiresAt       DateTime
+    userId          String
+    user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum TicketStatus {

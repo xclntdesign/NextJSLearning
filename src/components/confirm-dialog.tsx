@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { useState, cloneElement, useActionState, useEffect, useRef } from "react";
+import { useState, useActionState, useEffect, useRef } from "react";
 import { ActionState, EMPTY_ACTION_STATE } from "./form/utils/to-action-state";
 import { Button } from "@/components/ui/button";
 import { useActionFeedback } from "./form/hooks/use-action-feedback";
@@ -20,12 +20,7 @@ const useConfirmDialog = ({ title = "Are you absolutely sure?", description = "T
 
     const [actionState, formAction, isPending] = useActionState(action, EMPTY_ACTION_STATE);
 
-    const dialogTrigger = cloneElement(
-        typeof trigger === "function" ? trigger(isPending) : trigger,
-        {
-            onClick: () => setIsOpen((state) => !state),
-        }
-    );
+    const dialogTrigger = () => setIsOpen((state) => !state);
 
     const toastRef = useRef<string | number | null>(null);
 
